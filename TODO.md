@@ -1,0 +1,3 @@
+- [] code the auth with full forgot password functionality
+    - [] make folders and seperate functions, make the controllers as small as possible
+- [] code the controllers for story, chapters, and comments
