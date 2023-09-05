@@ -1,3 +1,3 @@
-- [] code the auth with full forgot password functionality
-    - [] make folders and seperate functions, make the controllers as small as possible
+- [x] code the auth with full forgot password functionality
+     - [] mail sends, yet to check if password actually updates
 - [] code the controllers for story, chapters, and comments
