@@ -1,10 +1,11 @@
 const express = require("express");
+const { getAllStories, getStory } = require("../controller/storyController");
 const router = express.Router();
 
 //get all stories - with pagination - anyone can do this
-router.get();
+router.get("/getAllStories", getAllStories);
 //get one storie - anyone can do this
-router.get()
+router.get("getStory/:id", getStory);
 //create a story
 router.post();
 //update a story - only creator and collaborators can do this
