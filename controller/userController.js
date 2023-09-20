@@ -95,7 +95,7 @@ const forgotPassword = async (req, res) => {
         
         This link will expire in 15 minutes for security reasons, so make sure to use it promptly.
         
-        If you're having trouble with the link or need further assistance, please don't hesitate to contact our support team at [Support Email Address].
+        If you're having trouble with the link or need further assistance, please don't hesitate to contact our support team at tabish.naqvi2003@gmail.com
         
         To ensure you receive future emails from us, please add ABSTRACTIFY to your email's safe sender list or address book.
         
