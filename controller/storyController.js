@@ -20,7 +20,7 @@ const postStory = async (req, res) => {
     const { title, author, genre, initialChapterTitle, initialChapterContent } = req.body;
     //validate user
     //test controller
-    if (!title || author || genre || content) return res.status(400).json("Fill in the fields");
+    if (!title || !author || !genre) return res.status(400).json("Fill in the fields");
 
 
     const authorId = await User.findById(author);
@@ -35,19 +35,21 @@ const postStory = async (req, res) => {
 
         await story.save();
 
-        const initialChapter = new Chapter({
-            title: initialChapterTitle,
-            content: initialChapterContent,
-            story: story._id,
-            author: authorId._id
-        });
+        if (initialChapterTitle) {
+            const initialChapter = new Chapter({
+                title: initialChapterTitle,
+                content: initialChapterContent,
+                story: story._id,
+                author: authorId._id
+            });
+            await initialChapter.save();
 
-        await initialChapter.save();
+        }
 
-        return res.status(201).json({ story: newStory, chapter: initialChapter });
+        return res.status(201).json({ story: story });
     } catch (error) {
         console.log(error.message);
-        return res.status(500).json({error: error.message, TypeError: "Internal Server Error"});
+        return res.status(500).json({ error: error.message, TypeError: "Internal Server Error" });
     }
 }
 
@@ -59,4 +61,4 @@ const deleteStory = async (req, res) => {
     //delete a chapter and all related chapters as well
 }
 
-module.exports = { getAllStories, getStory };
+module.exports = { getAllStories, getStory, postStory };
