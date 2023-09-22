@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllStories, getStory, postStory } = require("../controller/storyController");
+const { getAllStories, getStory, postStory, deleteStory } = require("../controller/storyController");
 const isUserAuthenticated = require("../middleware/isUserAuthenticated");
 const router = express.Router();
 
@@ -12,6 +12,6 @@ router.post("/createStory", postStory);
 //update a story - only creator and collaborators can do this
 // router.put();
 //delete a story - only creator can do this
-// router.delete();
+router.delete("/deleteStory/:id", isUserAuthenticated, deleteStory);
 
 module.exports = router;
