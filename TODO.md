@@ -2,12 +2,13 @@
      - [] mail sends, yet to check if password actually updates
 - [] code the controllers for story, chapters, and comments
      - [x] get all stories
-     - [x] post story with and without chapter, user auth left
-     - [] update story
-     - [] delete story with related chapter
+     - [x] post story with and without chapter
+     - [-] update story (do this after client has been updated)
+     - [x] delete story with related chapter
 
-     - [] get all chapters related to a story
-     - [] create a chapter
+     - [x] get all chapters related to a story
+     - [x] get a single chapter
+     - [x] create a chapter
      - [] update a chapter
      - [] delete a chapter
 
