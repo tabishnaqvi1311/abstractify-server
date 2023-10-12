@@ -18,6 +18,10 @@ const storySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }],
+    chapters: [{
+        type: mongoose.Schema.Types.ObjectId ,
+        ref: "Chapter"
+    }],
     genre: String
 });
 

@@ -7,7 +7,7 @@ const isUserAuthenticated = async(req, res, next) => {
 
     try{
         const data = jwt.verify(token, process.env.SECRET);
-        req.user = data.user;
+        req.user = data.userId;
         next();
     }
     catch(e){
