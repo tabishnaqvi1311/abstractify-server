@@ -9,6 +9,11 @@ const chapterRouter = require("./routes/chapterRoutes")
 
 const port = 8181 || process.env.PORT;
 
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
+})
+
 app.use(cors());
 app.use(express.json());
 app.use("/api/v1/story", storyRouter);
@@ -16,7 +21,7 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/chapter", chapterRouter);
 // app.use("/api/v1/comment");
 
-app.listen(port, async() => {
+app.listen(port, async () => {
     await connectToMongoDB(process.env.MONGO_URI);
     console.log(`Server Alive On http://localhost:${port}`);
 });

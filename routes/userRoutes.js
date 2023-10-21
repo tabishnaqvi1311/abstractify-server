@@ -22,7 +22,7 @@ router.post("/signup", signupUser);
 router.post("/forgotPassword", forgotPassword);
 //reset password route
 //TODO: TEST THE MIDDLEWARE ONCE THE CLIENT IS IMPLEMENTED
-router.post("/resetPassword/:id/:token", resetPassword);
+router.post("/resetPassword/:id/:token", validateResetLink, resetPassword);
 //get one user
 // router.get();
 

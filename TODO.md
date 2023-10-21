@@ -1,5 +1,5 @@
 - [x] code the auth with full forgot password functionality
-     - [] mail sends, yet to check if password actually updates
+     - [x] mail sends, yet to check if password actually updates
 - [] code the controllers for story, chapters, and comments
      - [x] get all stories
      - [x] post story with and without chapter

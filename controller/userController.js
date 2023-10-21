@@ -72,6 +72,8 @@ const loginUser = async (req, res) => {
 const forgotPassword = async (req, res) => {
     const { email } = req.body;
 
+    if(!email) return res.status(400).json("please enter an email")
+
     const doesEmailAlreadyExist = await User.findOne({ email });
     if (!doesEmailAlreadyExist) return res.status(404).json("email not found");
 
@@ -81,7 +83,8 @@ const forgotPassword = async (req, res) => {
     }
     const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "15min" });
 
-    const link = `http://localhost:3000/reset-password/${payload.id}/${token}`;
+
+    const link = `http://localhost:5173/reset/${payload.id}/${token}`;
 
     const mailOptions = {
         from: process.env.EMAIL,
@@ -108,9 +111,9 @@ const forgotPassword = async (req, res) => {
         return res.status(200).json("email sent");
     })
 }
-//TODO check if password is really being updated or not
+
 const resetPassword = async (req, res) => {
-    const { _id } = req.params;
+    const id = req.params.id;
     const { password, repeatPassword } = req.body;
 
     if (password !== repeatPassword) return res.status(400).json({ error: "passwords must match!" });
@@ -119,11 +122,12 @@ const resetPassword = async (req, res) => {
     const hash = await bcrypt.hash(password, salt);
 
     try {
-        const updatedUser = await User.findOneAndUpdate(
-            { _id },
-            { password: hash },
-        )
-        return res.status(201).json("User updated");
+        const updatedUser = await User.findOneAndUpdate({ _id:id }, { password: hash }, { new: true })
+        if (updatedUser) {
+            return res.status(200).json("Password reset successfully");
+        } else {
+            return res.status(404).json({ error: "User not found" });
+        }
     } catch (error) {
         console.log(error.message);
         return res.status(500).json("Internal server error");

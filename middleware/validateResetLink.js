@@ -1,7 +1,10 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
 const validateResetLink = async (req, res, next) => {
     const {id, token} = req.params;
+
+    if(!id || !token) return res.status(401).json("Unauthorized");
 
     const isUserIdValid = await User.findById({_id: id});
     if(!isUserIdValid) return res.status(401).json("Unauthorized");
